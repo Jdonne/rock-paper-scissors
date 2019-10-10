@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+
+function computerPlay(){
+let answer = ['rock', 'paper', 'scissors'];
+let randomAns = answer[Math.floor(Math.random()*answer.length)];
+return randomAns
+}
+
+function playRound(){
+    let computerSelection = computerPlay()
+    let playerSelection = 'rock'
+    let msg 
+
+if (playerSelection == 'rock' && computerSelection == 'scissors') {
+    msg = 'You win, Rock beats Scissors'
+    return msg}
+else if (playerSelection == 'rock' && computerSelection == 'paper') {
+    msg ='You lose, Rock loses to Paper';
+    return msg}
+else  {
+    msg = 'You tie, Rock ties to Paper';
+    return msg}
+}
+
+
+
+
+
+  </script>
+</body>
+</html>
