@@ -5,6 +5,9 @@
 <body>
   <script>
 
+let playerSelection = window.prompt('what you choose?')
+playerSelection = playerSelection.toLowerCase()
+
 function computerPlay(){
 let answer = ['rock', 'paper', 'scissors'];
 let randomAns = answer[Math.floor(Math.random()*answer.length)];
@@ -13,20 +16,38 @@ return randomAns
 
 function playRound(){
     let computerSelection = computerPlay()
-    let playerSelection = 'rock'
     let msg 
 
 if (playerSelection == 'rock' && computerSelection == 'scissors') {
     msg = 'You win, Rock beats Scissors'
-    return msg}
+    console.log(msg)}
 else if (playerSelection == 'rock' && computerSelection == 'paper') {
     msg ='You lose, Rock loses to Paper';
-    return msg}
-else  {
-    msg = 'You tie, Rock ties to Paper';
-    return msg}
+    console.log(msg)}
+else if (playerSelection == 'rock' && computerSelection == 'rock') {
+    msg = 'You tie, Rock ties to Rock';
+    console.log(msg)}
+else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+    msg = 'You lose, Scissors loses to Rock';
+    console.log(msg)}
+else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+    msg = 'You Win, Scissors beats to Paper';
+    console.log(msg)}
+else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
+    msg = 'You tie, Scissors ties with Scissors';
+    console.log(msg)}
+else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+    msg = 'You lose, Paper loses to Scissors';
+    console.log(msg)}
+else if (playerSelection == 'paper' && computerSelection == 'rock') {
+    msg = 'You win, Paper beats Rocks';
+    console.log(msg)}
+else {
+    msg = 'You tie, Paper ties with Paper';
+    console.log(msg)}
 }
 
+playRound()
 
 
 
