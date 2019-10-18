@@ -5,8 +5,7 @@
 <body>
   <script>
 
-let playerSelection = window.prompt('what you choose?')
-playerSelection = playerSelection.toLowerCase()
+
 
 function computerPlay(){
 let answer = ['rock', 'paper', 'scissors'];
@@ -14,40 +13,107 @@ let randomAns = answer[Math.floor(Math.random()*answer.length)];
 return randomAns
 }
 
+let result
+
 function playRound(){
+    let playerSelection = window.prompt('what you choose?')
+    playerSelection = playerSelection.toLowerCase()
     let computerSelection = computerPlay()
     let msg 
+    
 
 if (playerSelection == 'rock' && computerSelection == 'scissors') {
     msg = 'You win, Rock beats Scissors'
-    console.log(msg)}
+    result = 'win';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'rock' && computerSelection == 'paper') {
     msg ='You lose, Rock loses to Paper';
-    console.log(msg)}
+    result = 'lose';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'rock' && computerSelection == 'rock') {
     msg = 'You tie, Rock ties to Rock';
-    console.log(msg)}
+    result = 'lose';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'scissors' && computerSelection == 'rock') {
     msg = 'You lose, Scissors loses to Rock';
+    result = 'lose';
     console.log(msg)}
 else if (playerSelection == 'scissors' && computerSelection == 'paper') {
     msg = 'You Win, Scissors beats to Paper';
-    console.log(msg)}
+    result = 'win';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
     msg = 'You tie, Scissors ties with Scissors';
-    console.log(msg)}
+    result = 'lose';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'paper' && computerSelection == 'scissors') {
     msg = 'You lose, Paper loses to Scissors';
-    console.log(msg)}
+    result = 'lose';
+    console.log(msg);
+    return result;}
 else if (playerSelection == 'paper' && computerSelection == 'rock') {
     msg = 'You win, Paper beats Rocks';
-    console.log(msg)}
+    result = 'win';
+    
+    console.log(msg);
+    return result;}
 else {
     msg = 'You tie, Paper ties with Paper';
-    console.log(msg)}
+    result = 'lose';
+    console.log(msg);
+    return result;}
 }
 
+function game() {
+    let score = 0
+
 playRound()
+if (result == 'win') {
+score += 1;
+console.log("Your score is" + " " +score)
+}
+else {
+    console.log("you lost, your score is" + " " + score)
+}
+playRound()
+if (result == 'win') {
+score += 1;
+console.log("Your score is" + " " +score)
+}
+else {
+    console.log("you lost, your score is" + " " + score)
+}
+playRound()
+if (result == 'win') {
+score += 1;
+console.log("Your score is" + " " +score)
+}
+else {
+    console.log("you lost, your score is" + " " + score)
+}
+playRound()
+if (result == 'win') {
+score += 1;
+console.log("Your score is" + " " +score)
+}
+else {
+    console.log("you lost, your score is" + " " + score)
+}
+playRound()
+if (result == 'win') {
+score += 1;
+console.log("Your score is" + " " +score)
+}
+else {
+    console.log("you lost, your score is" + " " + score)
+}
+}
+game()
 
 
 
