@@ -1,123 +1,136 @@
 <html>
+
 <head>
   <title>Rock Paper Scissors</title>
 </head>
+
 <body>
+  <div>
+    <button>Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
+  </div>
+  <div id='display'></div>
+  <div id='tally'></div>
+  <div id='oppo'></div>
   <script>
 
+    function computerPlay() {
+      let answer = ['rock', 'paper', 'scissors'];
+      let randomAns = answer[Math.floor(Math.random() * answer.length)];
+      return randomAns
+    }
+
+    const display = document.querySelector('#display');
+    const tally = document.querySelector('#tally');
+    const oppo = document.querySelector('#oppo');
+    const div = document.querySelector('div');
+    let finalpick = "";
+    let score = 0;
+    let oppos = 0;
+
+    function pick(e) {
+      let choices = e.target;
+      finalpick = choices.innerText;
+
+      let result
+
+      function playRound() {
+        let playerSelection = finalpick;
+        playerSelection = playerSelection.toLowerCase();
+        let computerSelection = computerPlay();
+        let msg;
+        if (playerSelection == 'rock' && computerSelection == 'scissors') {
+          msg = 'You win, Rock beats Scissors'
+          result = 'win';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'rock' && computerSelection == 'paper') {
+          msg = 'You lose, Rock loses to Paper';
+          result = 'lose';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'rock' && computerSelection == 'rock') {
+          msg = 'You tie, Rock ties to Rock';
+          result = 'tie';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+          msg = 'You lose, Scissors loses to Rock';
+          result = 'lose';
+          display.textContent = 'Result: ' + msg
+        }
+        else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+          msg = 'You Win, Scissors beats Paper';
+          result = 'win';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
+          msg = 'You tie, Scissors ties with Scissors';
+          result = 'tie';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+          msg = 'You lose, Paper loses to Scissors';
+          result = 'lose';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else if (playerSelection == 'paper' && computerSelection == 'rock') {
+          msg = 'You win, Paper beats Rocks';
+          result = 'win';
+
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+        else {
+          msg = 'You tie, Paper ties with Paper';
+          result = 'tie';
+          display.textContent = 'Result: ' + msg;
+          return result;
+        }
+      }
+
+      function game() {
+        playRound()
+        if (result == 'win') {
+          score += 1;
+          tally.textContent = 'Your score is ' + score;
+          oppo.textContent = 'Opponent score is ' + oppos;
+        }
+        else if (result == 'lose') {
+          oppos += 1
+          tally.textContent = 'Your score is ' + score
+          oppo.textContent = 'Opponent score is ' + oppos;
+        }
+        else {
+          tally.textContent = 'Your score is ' + score;
+          oppo.textContent = 'Opponent score is ' + oppos;
+        }
+
+      }
+      game()
+
+      if (score == 5) {
+        tally.textContent = 'You have reached 5 points first, YOU WIN!'
+        div.removeEventListener('click', pick);
+      }
+      else if (oppos == 5) {
+        oppo.textContent = 'The opponent has reached 5 points first, YOU LOSE!'
+        div.removeEventListener('click', pick);
+      }
 
 
-function computerPlay(){
-let answer = ['rock', 'paper', 'scissors'];
-let randomAns = answer[Math.floor(Math.random()*answer.length)];
-return randomAns
-}
-
-let result
-
-function playRound(){
-    let playerSelection = window.prompt('what you choose?')
-    playerSelection = playerSelection.toLowerCase()
-    let computerSelection = computerPlay()
-    let msg 
-    
-
-if (playerSelection == 'rock' && computerSelection == 'scissors') {
-    msg = 'You win, Rock beats Scissors'
-    result = 'win';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'rock' && computerSelection == 'paper') {
-    msg ='You lose, Rock loses to Paper';
-    result = 'lose';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'rock' && computerSelection == 'rock') {
-    msg = 'You tie, Rock ties to Rock';
-    result = 'lose';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-    msg = 'You lose, Scissors loses to Rock';
-    result = 'lose';
-    console.log(msg)}
-else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-    msg = 'You Win, Scissors beats to Paper';
-    result = 'win';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-    msg = 'You tie, Scissors ties with Scissors';
-    result = 'lose';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-    msg = 'You lose, Paper loses to Scissors';
-    result = 'lose';
-    console.log(msg);
-    return result;}
-else if (playerSelection == 'paper' && computerSelection == 'rock') {
-    msg = 'You win, Paper beats Rocks';
-    result = 'win';
-    
-    console.log(msg);
-    return result;}
-else {
-    msg = 'You tie, Paper ties with Paper';
-    result = 'lose';
-    console.log(msg);
-    return result;}
-}
-
-function game() {
-    let score = 0
-
-playRound()
-if (result == 'win') {
-score += 1;
-console.log("Your score is" + " " +score)
-}
-else {
-    console.log("you lost, your score is" + " " + score)
-}
-playRound()
-if (result == 'win') {
-score += 1;
-console.log("Your score is" + " " +score)
-}
-else {
-    console.log("you lost, your score is" + " " + score)
-}
-playRound()
-if (result == 'win') {
-score += 1;
-console.log("Your score is" + " " +score)
-}
-else {
-    console.log("you lost, your score is" + " " + score)
-}
-playRound()
-if (result == 'win') {
-score += 1;
-console.log("Your score is" + " " +score)
-}
-else {
-    console.log("you lost, your score is" + " " + score)
-}
-playRound()
-if (result == 'win') {
-score += 1;
-console.log("Your score is" + " " +score)
-}
-else {
-    console.log("you lost, your score is" + " " + score)
-}
-}
-game()
-
-
+    }
+    div.addEventListener('click', pick);
 
 
   </script>
 </body>
+
 </html>
